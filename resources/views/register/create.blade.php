@@ -16,7 +16,7 @@
                         Staff ID
                     </label>
 
-                    <input class="border border-gray-400 p-2 w-full" type="text" name="staff_id" id="staff_id" value="" required>
+                    <input class="border border-gray-400 p-2 w-full" type="text" name="staff_id" id="staff_id" value="{{ old('staff_id') }}" required>
 
                     @error('staff_id')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -28,7 +28,7 @@
                         Name
                     </label>
 
-                    <input class="border border-gray-400 p-2 w-full" type="text" name="name" id="name" value="" required>
+                    <input class="border border-gray-400 p-2 w-full" type="text" name="name" id="name" value="{{ old('name') }}" required>
 
                     @error('name')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -40,7 +40,7 @@
                         Gender
                     </label>
 
-                    <input class="border border-gray-400 p-2 w-full" type="text" name="gender" id="gender" value="" required>
+                    <input class="border border-gray-400 p-2 w-full" type="text" name="gender" id="gender" value="{{ old('gender') }}" required>
 
                     @error('gender')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -52,7 +52,7 @@
                         Address
                     </label>
 
-                    <textarea class="border border-gray-400 p-2 w-full" name="address" id="address" value=""></textarea>
+                    <textarea class="border border-gray-400 p-2 w-full" name="address" id="address">{{ old('address') }}</textarea>
 
                     @error('address')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -64,7 +64,7 @@
                         Email
                     </label>
 
-                    <input class="border border-gray-400 p-2 w-full" type="email" name="email" id="email" value="" required>
+                    <input class="border border-gray-400 p-2 w-full" type="email" name="email" id="email" value="{{ old('email') }}" required>
 
                     @error('email')
                     <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
@@ -76,7 +76,7 @@
                         Password
                     </label>
 
-                    <input class="border border-gray-400 p-2 w-full" type="password" name="password" id="password" value="" required>
+                    <input class="border border-gray-400 p-2 w-full" type="password" name="password" id="password" value="{{ old('password') }}" required>
 
                     @error('password')
                     <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
@@ -88,7 +88,7 @@
                         Phone Number :
                     </label>
 
-                    <input class="border border-gray-400 p-2 w-full" type="integer" name="phonenumber" id="phonenumber" value="" required>
+                    <input class="border border-gray-400 p-2 w-full" type="integer" name="phonenumber" id="phonenumber" value="{{ old('phonenumber') }}" required>
 
                     @error('phonenumber')
                     <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
@@ -103,9 +103,12 @@
                     <select name="department" id="department">
                         <option value=""> Select Department </option>
                         @foreach (App\Models\Department::get() as $data)
-                        <option value="{{ $data->id }}">
+                        <option value="{{ $data->id }}" {{ old('department') == $data->id ? 'selected' : '' }}>
                             {{ $data->department }}
                         </option>
+                        <!-- <option value="{{ $data->id }}">
+                            {{ $data->department }}
+                        </option> -->
                         @endforeach
                     </select>
 
