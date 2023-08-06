@@ -23,9 +23,10 @@ Route::get('/register', [UserController::class, 'create'])->name('register');
 Route::post('/register', [UserController::class, 'store']);
 
 // User list, view profile and update profile
-Route::get('users', [UserController::class, 'index']);
+Route::get('users', [UserController::class, 'index'])->name('users.index');
 Route::get('users/profile/{id}', [UserController::class, 'show']);
 Route::get('users/profile/edit/{id}', [UserController::class, 'edit']);
+Route::get('users/profile/delete/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 Route::post('users/profile/edit/{id}', [UserController::class, 'update']);
 Route::get('history', [UserController::class, 'history']);
 

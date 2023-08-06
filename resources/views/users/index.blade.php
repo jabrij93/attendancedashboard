@@ -39,7 +39,7 @@ $role = Auth::user()-> role ?? null
                                     Pay-per-Hour
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Edit
+                                    Action
                                 </th>
                             </tr>
                         </thead>
@@ -73,8 +73,16 @@ $role = Auth::user()-> role ?? null
 
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
 
-
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> <a href="/users/profile/edit/{{ $row->id }}"> Edit </a></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <div class="flex items-center">
+                                        <a href="users/profile/edit/{{ $row->id }}" class="flex items-center" title="Edit">
+                                            <i class="fas fa-edit mr-2"></i>
+                                        </a>
+                                        <a href="users/profile/delete/{{ $row->id }}" class="flex items-center ml-4" title="Delete" onclick="return confirm('Confirm to delete {{ $row->name }}?')">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
