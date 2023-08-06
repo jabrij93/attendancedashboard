@@ -29,6 +29,22 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'images' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Example validation for images
+            'staff_id' => 'required|unique:users,staff_id', // Check uniqueness in the 'users' table
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email', // Example validation for email
+            'password' => 'required|min:8',
+            'gender' => 'required',
+            'address' => 'required',
+            'phonenumber' => 'required',
+            'department' => 'required',
+        ], [
+            'staff_id.unique' => 'The staff ID is already in use.',
+            'email.unique' => 'The email address is already in use.',
+            // Add custom messages for other rules as needed
+        ]);
+
         $data = new User;
 
         if ($request->hasFile('images')) {
@@ -65,6 +81,15 @@ class UserController extends Controller
     {
         $info = User::findOrFail($id);
         return view('users.edit', compact('info'));
+    }
+
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('users.index')
+            ->with('success', 'User has been deleted successfully');
     }
 
     public function update(Request $request, $id)
