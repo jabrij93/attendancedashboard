@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Gender;
+use App\Models\Department;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,6 +20,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\Gender::factory(2)->create();
+        \App\Models\Department::factory(8)->create();
         \App\Models\User::factory(1)->janeDoe()->create(); // Create one user with janeDoe state
         \App\Models\User::factory(10)->create();
     }

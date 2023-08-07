@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Illuminate\Support\Number;
 use Laravel\Jetstream\Features;
 
 class UserFactory extends Factory
@@ -25,10 +26,16 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $stringLetters = Str::random(3);
+        $integerLetters = Str::random(3, '1234567890');
+        $staff_id = $stringLetters . $integerLetters;
+
         return [
+            'staff_id' => $staff_id,
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'genders_id' => $this->faker->randomElement(['1', '2']),
+            'departments_id' => $this->faker->randomElement(['1','2','3','4','5','6','7']),
             'email_verified_at' => now(),
             'password' => Hash::make('password'), // Set your common password here, // password
             'remember_token' => Str::random(10),

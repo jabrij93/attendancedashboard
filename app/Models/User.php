@@ -66,6 +66,11 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function Gender()
+    {
+        return $this->hasOne(Gender::class, 'gender');
+    }
+
     public function Department()
     {
         return $this->belongsTo(Department::class, 'department');

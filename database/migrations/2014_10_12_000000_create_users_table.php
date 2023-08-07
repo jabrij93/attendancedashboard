@@ -21,7 +21,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->unsignedBigInteger('genders_id')->nullable(); // Make sure it's an unsigned integer
             $table->foreign('genders_id')->references('id')->on('genders');
-            $table->string('department')->nullable();
+            $table->unsignedBigInteger('departments_id')->nullable(); // Make sure it's an unsigned integer
+            $table->foreign('departments_id')->references('id')->on('departments');
+            // $table->string('department')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('address')->nullable();
