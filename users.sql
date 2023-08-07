@@ -67,6 +67,15 @@ INSERT INTO `users` (`id`, `images`, `staff_id`, `name`, `email`, `gender`, `dep
 (4, NULL, 'test333', 'Jane Doe 3', 'janedoe3@gmail.com', 'female', '3', NULL, '$2y$10$jMF/dlL6zjYJB.EXf82h/eRrwhG59kc5EVE.RtflZKM/gMrAKUTFG', NULL, NULL, NULL, NULL, 134566789, 'AR', NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, '2022-12-05 04:40:39', '2022-12-05 04:40:39'),
 (5, NULL, 'test444', 'Jane Doe 4', 'janedoe4@gmail.com', 'female', '3', NULL, '$2y$10$M2fQYpTptEjddwJn9WM52O17D8vVXyInOviBuktrqnzqUFiJkgo2W', NULL, NULL, NULL, NULL, 134566780, 'AR', NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, '2022-12-05 04:40:57', '2022-12-05 04:40:57');
 
+
+-- Data
+INSERT INTO `users` (`id`, `images`, `staff_id`, `name`, `email`, `genders_id`, `department`, `password`, `address`, `phonenumber`, `company_name`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'test123', 'Jane Doe', 'janedoe@gmail.com', 2, '3', '$2y$10$OnKikOXJ65Vgn1tSMumr5e1Nmw/92hV0BYJjGvEvFPUuveV/5a2di', 0123456789, 'AR', '2022-12-03 06:37:17', '2022-12-03 06:37:17'),
+(2, NULL, 'azmin123', 'Azmin Ali', 'azmin@gmail.com', 1, '3', NULL, '$2y$10$OnKikOXJ65Vgn1tSMumr5e1Nmw/92hV0BYJjGvEvFPUuveV/5a2di', 'KL', 134566789, 'AR', NULL, NULL, NULL, '2022-12-03 22:13:38', '2022-12-03 22:13:38'),
+(3, NULL, 'done123', 'Done Jones', 'donejones@gmail.com', 1, '3', NULL, '$2y$10$kz9a9g6OhJf5juF2ARWC2.mEJGFO5M9dYTbNCIbethXx.cB7KJy66', NULL, NULL, NULL, 'cali', 134413456, 'EZ', NULL, NULL, NULL, '2022-12-05 01:00:16', '2022-12-05 01:00:16'),
+(4, NULL, 'test333', 'Jane Doe 3', 'janedoe3@gmail.com', 2, '3', NULL, '$2y$10$jMF/dlL6zjYJB.EXf82h/eRrwhG59kc5EVE.RtflZKM/gMrAKUTFG', NULL, NULL, NULL, NULL, 134566789, 'AR', NULL, NULL, NULL, '2022-12-05 04:40:39', '2022-12-05 04:40:39'),
+(5, NULL, 'test444', 'Jane Doe 4', 'janedoe4@gmail.com', 2, '3', NULL, '$2y$10$M2fQYpTptEjddwJn9WM52O17D8vVXyInOviBuktrqnzqUFiJkgo2W', NULL, NULL, NULL, NULL, 134566780, 'AR', NULL, NULL, NULL, '2022-12-05 04:40:57', '2022-12-05 04:40:57');
+
 --
 -- Indexes for dumped tables
 --
