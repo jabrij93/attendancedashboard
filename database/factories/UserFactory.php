@@ -26,9 +26,10 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        $stringLetters = Str::random(3);
-        $integerLetters = Str::random(3, '1234567890');
-        $staff_id = $stringLetters . $integerLetters;
+        $stringLetters = Str::random(2, 'abcdefghijklmnopqrstuvwxyz'); // First two characters as alphabets
+        $integerDigits = Str::random(3, '1234567890'); // Last three characters as numbers
+
+        $staff_id = $stringLetters . $integerDigits;
 
         return [
             'staff_id' => $staff_id,
