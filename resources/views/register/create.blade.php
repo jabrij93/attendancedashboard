@@ -35,12 +35,24 @@
                     @enderror
                 </div>
 
+                <!-- GENDER -->
                 <div class="mb-6">
                     <label class="block mb-2 uppercase font-bold text-sm text-gray-700" for="gender">
                         Gender
                     </label>
 
-                    <input class="border border-gray-400 p-2 w-full" type="text" name="gender" id="gender" value="{{ old('gender') }}" required>
+                    <!-- <input class="border border-gray-400 p-2 w-full" type="text" name="gender" id="gender" value="{{ old('gender') }}" required> -->
+                    <select name="gender" id="gender">
+                        <option value=""> Select Gender </option>
+                        @foreach (App\Models\Gender::get() as $data)
+                        <option value="{{ $data->id }}" {{ old('department') == $data->id ? 'selected' : '' }}>
+                            {{ $data->gender }}
+                        </option>
+                        <!-- <option value="{{ $data->id }}">
+                            {{ $data->department }}
+                        </option> -->
+                        @endforeach
+                    </select>
 
                     @error('gender')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
