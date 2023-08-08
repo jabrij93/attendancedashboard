@@ -9,7 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-
+use App\Models\User;
+use App\Models\Department;
 
 class User extends Authenticatable
 {
@@ -73,7 +74,7 @@ class User extends Authenticatable
 
     public function Department()
     {
-        return $this->belongsTo(Department::class, 'department');
+        return $this->belongsTo(Department::class, 'departments_id');
     }
 
     public function log()
