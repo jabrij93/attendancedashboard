@@ -11,7 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
-{
+{  
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
@@ -67,8 +67,8 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function Department()
-    {
-        return $this->belongsTo(Department::class, 'department');
-    }
+    // public function Department()
+    // {
+    //     return $this->belongsTo(Department::class, 'department');
+    // }
 }
