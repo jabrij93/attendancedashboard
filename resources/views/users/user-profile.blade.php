@@ -16,9 +16,6 @@
 
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                     <div class="text-sm font-medium text-gray-500">
-                                        Staff ID : {{$info -> staff_id}}
-                                    </div>
-                                    <div class="text-sm font-medium text-gray-500">
                                         Name : {{$info -> name}}
                                     </div>
                                     <div class="text-sm font-medium text-gray-500">
@@ -33,36 +30,18 @@
                                     <div class="text-sm font-medium text-gray-500">
                                         Phone Number : {{$info -> phonenumber }}
                                     </div>
-                                    <div class="text-sm font-medium text-gray-500">
-                                        Department : {{$info -> Department->department ?? null}}
-                                    </div>
-                                    <div class="text-sm font-medium text-gray-500">
-                                        Company : {{$info -> company_name }}
-                                    </div>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <div class="text-sm font-medium text-gray-500">
-                                        Pay-per-hour
-                                    </div>
+                                    
                                 </td>
                                 <td rowspan="2" class="px-6 py-4 text-sm font-medium">
-                                    <p class=" text-sm font-medium text-gray-500"> Check in : {{$info -> date_checkIn}} <br>
-                                        {{$info -> time_checkIn}} <br>
-                                        {{$info -> location_checkIn}}
-                                    </p>
-
-                                    <p class=" text-sm font-medium text-gray-500"> <br> Check out :</p>
-                                </td>
                             </tr>
 
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <div class="text-sm font-medium text-gray-500">
-                                        Total-pay
-                                    </div>
                                 </td>
                             </tr>
                         </tbody>
