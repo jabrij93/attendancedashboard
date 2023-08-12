@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,9 @@ Route::get('users', [UserController::class, 'index']);
 Route::get('users/profile/{id}', [UserController::class, 'show']);
 Route::get('users/profile/edit/{id}', [UserController::class, 'edit']);
 Route::post('users/profile/edit/{id}', [UserController::class, 'update']);
+
+Route::get('/sales', [ItemController::class, 'index'])->name('item.index');
+Route::post('/sales', [ItemController::class, 'store']);
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
