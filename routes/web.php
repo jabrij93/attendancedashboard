@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,9 @@ Route::get('users/profile/edit/{id}', [UserController::class, 'edit']);
 Route::get('users/profile/delete/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 Route::post('users/profile/edit/{id}', [UserController::class, 'update']);
 Route::get('history', [UserController::class, 'history']);
+
+Route::get('/sales', [ItemController::class, 'index'])->name('item.index');
+Route::post('/sales', [ItemController::class, 'store']);
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
