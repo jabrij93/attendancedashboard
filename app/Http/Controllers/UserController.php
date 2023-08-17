@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = User::with('department')->get();
+        $user = User::get();
         return view('users.index', compact('user'));
     }
 
@@ -31,14 +31,10 @@ class UserController extends Controller
     {
         $request->validate([
             'images' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Example validation for images
-            'staff_id' => 'required|unique:users,staff_id', // Check uniqueness in the 'users' table
+            // 'staff_id' => 'required|unique:users,staff_id', // Check uniqueness in the 'users' table
             'name' => 'required',
             'email' => 'required|email|unique:users,email', // Example validation for email
             'password' => 'required|min:8',
-            'gender' => 'required',
-            'address' => 'required',
-            'phonenumber' => 'required',
-            'department' => 'required',
         ], [
             'staff_id.unique' => 'The staff ID is already in use.',
             'email.unique' => 'The email address is already in use.',
@@ -57,14 +53,9 @@ class UserController extends Controller
         }
 
         $data->images = $images;
-        $data->staff_id  = $request->staff_id;
         $data->name      = $request->name;
         $data->email     = $request->email;
         $data->password = bcrypt($request->get('password'));
-        $data->gender    = $request->gender;
-        $data->address   = $request->address;
-        $data->phonenumber = $request->phonenumber;
-        $data->department  = $request->department;
 
         $data->save();
 

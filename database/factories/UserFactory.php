@@ -32,11 +32,10 @@ class UserFactory extends Factory
         $staff_id = $stringLetters . $integerDigits;
 
         return [
-            'staff_id' => $staff_id,
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'genders_id' => $this->faker->randomElement(['1', '2']),
-            'departments_id' => $this->faker->randomElement(['1','2','3','4','5','6','7']),
+            // 'genders_id' => $this->faker->randomElement(['1', '2']),
+            // 'departments_id' => $this->faker->randomElement(['1','2','3','4','5','6','7']),
             'email_verified_at' => now(),
             'password' => Hash::make('password'), // Set your common password here, // password
             'remember_token' => Str::random(10),
