@@ -32,6 +32,7 @@ Route::post('users/profile/edit/{id}', [UserController::class, 'update']);
 Route::get('history', [UserController::class, 'history']);
 
 Route::get('/sales', [ItemController::class, 'index'])->name('item.index');
+Route::get('/detail', [ItemController::class, 'detail']);
 Route::post('/sales', [ItemController::class, 'store']);
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
