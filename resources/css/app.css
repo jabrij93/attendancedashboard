@@ -55,15 +55,16 @@ img {
 		}
 
 .product-wrapper {
-	padding-left: 300px; /* Adjust the padding as needed */
+	padding-left: 250px; /* Adjust the padding as needed */
     background-color: white; /* Set the background color here */
 }		
 
 /* ----- Product Section ----- */
 .product {
 	display: grid;
-	grid-template-columns: 0.8fr 1fr;
+	grid-template-columns: 0.9fr 1fr;
 	margin: auto;
+	gap: 20px;
 	padding: 2.5em 0;
 	min-width: 600px;
 	background-color: white;
@@ -131,6 +132,21 @@ img {
 	}
 }
 
+.photo-album li {
+	display: inline-block; /* Display images in a row */
+	width: auto; /* Allow the width to adjust based on content */
+	margin: 0; /* Remove any margin that might affect layout */
+}
+
+.photo-album li img {
+	width: 100%; /* Make sure the images fill the available space */
+	height: auto; /* Maintain the aspect ratio */
+	border: 1px solid #a6a6a6;
+	border-radius: 3px;
+}
+/* With these modifications, the images should now be displayed next to each other in a row within the photo album. The display: flex; property on the <ul> ensures that the images are evenly spaced, and the adjustments to the <li> elements prevent any unwanted spacing or wrapping. */
+
+
 /* ----- Informations Section ----- */
 .product__info {
 	padding: 0.8em 0;
@@ -186,6 +202,19 @@ img {
 	li:not(:first-child) {
 		margin-left: 0.1em;
 	}
+}
+
+.variant li {
+	display: inline-block; /* Display images in a row */
+	width: auto; /* Allow the width to adjust based on content */
+	margin: 0; /* Remove any margin that might affect layout */
+}
+
+.variant li img {
+	width: 100%; /* Make sure the images fill the available space */
+	height: auto; /* Maintain the aspect ratio */
+	border: 1px solid #a6a6a6;
+	border-radius: 3px;
 }
 
 .description {

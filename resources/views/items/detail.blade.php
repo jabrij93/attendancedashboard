@@ -26,11 +26,11 @@ $role = Auth::user()-> role ?? null
             </div>
             <div class="product__info">
                 <div class="title">
-                    <h1>Delicious Apples</h1>
-                    <span>COD: 45999</span>
+                    <h1>Items </h1>
+                    <span>Product ID : ABC123 </span>
                 </div>
                 <div class="price">
-                    R$ <span>7.93</span>
+                    RM <span>7.90</span>
                 </div>
                 <div class="variant">
                     <h3>SELECT A COLOR</h3>
@@ -42,7 +42,7 @@ $role = Auth::user()-> role ?? null
                     </ul>
                 </div>
                 <div class="description">
-                    <h3>BENEFITS</h3>
+                    <h3>DESCRIPTION</h3>
                     <ul>
                         <li>Apples are nutricious</li>
                         <li>Apples may be good for weight loss</li>
