@@ -3,7 +3,6 @@ $role = Auth::user()-> role ?? null
 @endphp
 
 <x-app-layout>
-
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("openModal").addEventListener("click", function() {
@@ -34,6 +33,10 @@ $role = Auth::user()-> role ?? null
                     </div>
 
                     <div class="mb-4">
+                        <input type="hidden" name="product_id" value=" {{ Auth::user()->id }}">
+                    </div>
+
+                    <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">Item</label>
                         <input type="text" name="item" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                     </div>
@@ -48,6 +51,11 @@ $role = Auth::user()-> role ?? null
                         <input type="file" name="images" class="mt-1 block w-full">
                     </div>
 
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700">Price</label>
+                        <input type="text" name="price" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    </div>
+
                     <div class="mt-6">
                         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Add</button>
                         <button type="button" class="ml-2 text-gray-500 hover:text-gray-700" id="closeModal">Cancel</button>
@@ -57,7 +65,6 @@ $role = Auth::user()-> role ?? null
         </div>
     </div>
     <!-- Add Item Modal -->
-
 
     <div class="flex flex-col mt-6 ">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 ">
@@ -88,7 +95,10 @@ $role = Auth::user()-> role ?? null
                                     Image
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Edit
+                                    Price
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Action
                                 </th>
                             </tr>
                         </thead>
@@ -104,19 +114,38 @@ $role = Auth::user()-> role ?? null
                                     <div class="text-sm text-gray-900"> {{ $no++ }}  </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900"> {{ $item->name }} </div>
+                                    <a href="{{ route('item.detail', ['id' => $item->id]) }}" class="text-sm text-gray-900">
+                                        {{ $item->name }}
+                                    </a>
                                 </td>
+                                <!-- <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900"> {{ $item->name }} </div>
+                                </td> -->
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-900"> {{ $item->itemType->types }} </div>
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <img src="{{ asset('storage/item_images/' . $item->images) }}" alt="Item Image">
-                                    <!-- <img src="{{ asset('item_images/' . $item->images) }}" alt="Item Image"> -->
-                                    <!-- <a href="users/profile/"> {{ $item->images }} </a> -->
-                                </td>   
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> 
-                                    <a href="/users/profile/edit/"> Edit </a></td>
+                                    <img src="{{ asset('storage/item_images/' . $item->images) }}" alt="Item Image" style="max-width: 200px; max-height: 150px;">
+                                </td> 
+                                
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900"> {{ $item->price }} </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <div class="flex items-center">
+                                        <a href="detail" class="flex items-center mr-3" title="Add to Cart">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </a>
+                                        <a href="users/profile/edit/" class="flex items-center" title="Edit">
+                                            <i class="fas fa-edit mr-2"></i>
+                                        </a>
+                                        <a href="users/profile/delete/" class="flex items-center" title="Delete" onclick="return confirm('Confirm to delete data?')">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                        
+                                    </div> 
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
