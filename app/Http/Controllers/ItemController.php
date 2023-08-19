@@ -21,7 +21,7 @@ class ItemController extends Controller
 
     public function store(Request $request)
     {
-        $images = null; // Initialize the variable outside the if statement
+        $images = null; // Initialize the variable outside the if statement 
 
         if ($request->hasFile('images')) {
             $file = $request->file('images');
@@ -40,9 +40,16 @@ class ItemController extends Controller
         return redirect()->route('item.index')->with('success', 'Item has been created successfully.');
     }
 
-    public function detail() 
+    public function detail($id) 
     {
-        return view("items.detail");
+        $item = Item::find($id); // Fetch a single item
+
+        if ($item) {
+            return view('items.detail', compact('item'));
+        } else {
+            // Handle the case when no item is found
+            return view('item.no-item');
+        }
     }
 
     public function addToCart(Request $request) 

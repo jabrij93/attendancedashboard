@@ -24,13 +24,15 @@ $role = Auth::user()-> role ?? null
                     </div>
                 </div>
             </div>
+
+            
             <div class="product__info">
                 <div class="title">
-                    <h1>Items </h1>
-                    <span>Product ID : ABC123 </span>
+                    <h1> {{ $item->itemType->types }} </h1>
+                    Product ID: <span>{{ $item->product_id }} </span>
                 </div>
                 <div class="price">
-                    RM <span>7.90</span>
+                    RM <span> {{ $item->price }}</span>
                 </div>
                 <div class="variant">
                     <h3>SELECT A COLOR</h3>
