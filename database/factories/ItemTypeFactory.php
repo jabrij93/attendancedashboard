@@ -18,7 +18,8 @@ class ItemTypeFactory extends Factory
     public function definition()
     {
         return [
-            'types' => $this->faker->unique()->randomElement(['Home Decor', 'Traditional Handcraft', 'Cultural']), //
+            'types' => $this->faker->word(),
+            // 'types' => $this->faker->unique()->randomElement(['Home Decor', 'Traditional Handcraft', 'Cultural']), 
         ];
     }
 }
