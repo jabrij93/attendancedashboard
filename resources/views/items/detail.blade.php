@@ -12,7 +12,8 @@ $role = Auth::user()-> role ?? null
                             <i class="material-icons">share</i>
                             <i class="material-icons">favorite_border</i>
                         </div>
-                        <img src="https://res.cloudinary.com/john-mantas/image/upload/v1537291846/codepen/delicious-apples/green-apple-with-slice.png" alt="green apple slice">
+                        <img src="{{ asset('storage/item_images/' . $item->images) }}" alt="Item Image">
+                        <!-- <img src="https://res.cloudinary.com/john-mantas/image/upload/v1537291846/codepen/delicious-apples/green-apple-with-slice.png" alt="green apple slice"> -->
                     </div>
                     <div class="photo-album">
                         <ul>

@@ -50,8 +50,6 @@ $role = Auth::user()-> role ?? null
 
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> <a href="users/profile/{{ $row->id }}"> View profile </a></td>
 
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
-
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     <div class="flex items-center">
                                         <a href="users/profile/edit/{{ $row->id }}" class="flex items-center" title="Edit">
