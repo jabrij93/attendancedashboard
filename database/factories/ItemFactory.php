@@ -27,11 +27,19 @@
             $imageName = date('YmdHis') . '.' . $randomExtension;
             $images = $imageName;
 
+            // Generate random 8 characters product_id
+            $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $alphaPart = substr(str_shuffle($alphabet), 0, 3);
+            $numericPart = str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT);
+            $productId = $alphaPart . $numericPart;
+
             return [
                 'name' => $this->faker->sentence(1),
                 'type_id' => $this->faker->randomElement(['1', '2', '3']),
                 'user_id' => $this->faker->randomElement(['1', '2', '3','4','5','6','7','8','9']),
+                'price' => $this->faker->randomFloat(2, 10, 999), 
                 'images' => $images,
+                'product_id' => $productId,
             ];
         }
     }
