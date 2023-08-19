@@ -30,11 +30,19 @@ class ItemController extends Controller
             $images = $name;
         }
 
+        // Generate random 8 characters product_id
+        $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $alphaPart = substr(str_shuffle($alphabet), 0, 3);
+        $numericPart = str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT);
+        $productId = $alphaPart . $numericPart;
+
         $data = new Item;
         $data->name = $request->item;
         $data->type_id = $request->type_id;
         $data->user_id = $request->user_id;
         $data->images = $images;
+        $data->price = $request->price;
+        $data->product_id = $productId;
         $data->save();
 
         return redirect()->route('item.index')->with('success', 'Item has been created successfully.');
