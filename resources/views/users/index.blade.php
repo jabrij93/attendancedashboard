@@ -18,25 +18,13 @@ $role = Auth::user()-> role ?? null
                                     No.
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Staff ID
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Name
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Email
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Department
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Company
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Profile
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Pay-per-Hour
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Action
@@ -54,19 +42,10 @@ $role = Auth::user()-> role ?? null
                                     <div class="text-sm text-gray-900"> {{ $no++ }} </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900"> {{ $row->staff_id }} </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-900"> {{ $row->name }} </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-900"> {{ $row->email }} </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {{ $row->Department->department ?? null }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {{ $row->company_name }}
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> <a href="users/profile/{{ $row->id }}"> View profile </a></td>

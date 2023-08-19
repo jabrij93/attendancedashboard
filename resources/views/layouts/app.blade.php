@@ -14,6 +14,9 @@
     <!-- FontAwesome Library -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
+    <!-- Material Icons Library -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <!-- Styles -->
     @livewireStyles
 
