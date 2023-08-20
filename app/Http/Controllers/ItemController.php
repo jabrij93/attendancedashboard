@@ -77,4 +77,14 @@ class ItemController extends Controller
             return "TEST 2";
         }
     }
+
+    public static function cartItem() 
+    {
+        if(Auth::check()) {
+            return Cart::where('user_id', Auth::id())->get()->count();
+        } else {
+            // Handle the case where the user is not authenticated
+            return []; // For example, return an empty array or an error message
+        }
+    }
 }
