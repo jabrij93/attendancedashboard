@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class ItemController extends Controller
 {
@@ -62,6 +65,16 @@ class ItemController extends Controller
 
     public function addToCart(Request $request) 
     {
-        return "Hello World !";
+        if(Auth::check())
+        {
+            $cart = new Cart;
+            $cart->user_id = Auth::id();  // Use Auth::id() to get the authenticated user's ID
+            $cart->product_id = $request->product_id;
+            $cart->save();
+
+            return redirect()->back()->with('success', 'Item successfully added to cart');
+        } else {
+            return "TEST 2";
+        }
     }
 }

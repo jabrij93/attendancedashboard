@@ -31,6 +31,7 @@ Route::get('users/profile/delete/{id}', [UserController::class, 'destroy'])->nam
 Route::post('users/profile/edit/{id}', [UserController::class, 'update']);
 Route::get('history', [UserController::class, 'history']);
 
+Route::post('/add_to_cart', [ItemController::class, 'addToCart']);
 Route::get('/sales', [ItemController::class, 'index'])->name('item.index');
 Route::get('/detail/item/{id}', [ItemController::class, 'detail'])->name('item.detail');
 Route::post('/sales', [ItemController::class, 'store']);

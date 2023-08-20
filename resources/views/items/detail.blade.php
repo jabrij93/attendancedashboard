@@ -3,6 +3,13 @@ $role = Auth::user()-> role ?? null
 @endphp
 
 <x-app-layout>
+    <!-- Display flash message -->
+    @if (Session::has('success'))
+                    <div class="alert alert-success">
+                        {{ Session::get('success') }}
+                    </div>
+                @endif  
+                
     <div class="product-wrapper"> 
         <section class="product">
             <div class="product__photo">
@@ -53,7 +60,11 @@ $role = Auth::user()-> role ?? null
                         <li>They're linked to a lowest risk of diabetes</li>
                     </ul>
                 </div>
-                <button class="buy--btn">ADD TO CART</button>
+                <form action="/add_to_cart" method="POST">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{ $item['product_id'] }}">
+                    <button class="buy--btn">ADD TO CART</button>
+                </form>
             </div>
         </section>
     </div>    
