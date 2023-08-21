@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -86,5 +87,19 @@ class ItemController extends Controller
             // Handle the case where the user is not authenticated
             return []; // For example, return an empty array or an error message
         }
+    }
+
+    public static function myCart()
+    {
+        $userId = Auth::id();
+        
+        $cartItems = DB::table('cart')
+            ->join('items', 'cart.product_id', '=', 'items.product_id')
+            ->leftJoin('item_types', 'items.type_id', '=', 'item_types.id')
+            ->select('cart.*', 'items.name', 'items.price', 'items.images', 'item_types.types')
+            ->where('cart.user_id', $userId)
+            ->get();
+        
+        return view('cart.index', compact('cartItems'));
     }
 }
