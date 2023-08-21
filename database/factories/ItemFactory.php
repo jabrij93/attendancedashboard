@@ -34,8 +34,8 @@
             $productId = $alphaPart . $numericPart;
 
             return [
-                'name' => $this->faker->sentence(1),
-                'type_id' => $this->faker->randomElement(['1', '2', '3']),
+                'name' => $this->faker->word(1),
+                'type_id' => $this->faker->randomElement(['1', '2', '3', '4', '5']),
                 'user_id' => $this->faker->randomElement(['1', '2', '3','4','5','6','7','8','9']),
                 'price' => $this->faker->randomFloat(2, 10, 999), 
                 'images' => $images,
