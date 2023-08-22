@@ -15,7 +15,7 @@ class Cart extends Model
 
     public function item()
     {
-        return $this->belongsTo(Item::class, 'product_id', 'id');
+        return $this->belongsTo(Item::class, 'product_id');
     }
     
     public function itemType()

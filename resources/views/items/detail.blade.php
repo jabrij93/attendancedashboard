@@ -5,10 +5,10 @@ $role = Auth::user()-> role ?? null
 <x-app-layout>
     <!-- Display flash message -->
     @if (Session::has('success'))
-                    <div class="alert alert-success">
-                        {{ Session::get('success') }}
-                    </div>
-                @endif  
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+        </div>
+    @endif  
                 
     <div class="product-wrapper"> 
         <section class="product">
@@ -36,6 +36,7 @@ $role = Auth::user()-> role ?? null
             
             <div class="product__info">
                 <div class="title">
+                    <h1> {{ $item->name }} </h1>
                     <h1> {{ $item->itemType->types }} </h1>
                     Product ID: <span>{{ $item->product_id }} </span>
                 </div>
