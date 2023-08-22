@@ -46,11 +46,8 @@ class DatabaseSeeder extends Seeder
         // Item
         $items = Item::factory(20)->create();
 
-        // Fetch existing product_ids and user_ids
-        $existingProductIds = Item::pluck('product_id')->toArray();
-        $existingUserIds = Item::pluck('user_id')->toArray();
-
         // Cart
+
         $carts = [];
         foreach ($items as $item) {
             $cart = Cart::factory()->make([
