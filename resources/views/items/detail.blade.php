@@ -13,24 +13,27 @@ $role = Auth::user()-> role ?? null
     <div class="product-wrapper"> 
         <section class="product">
             <div class="product__photo">
-                <div class="photo-container">
-                    <div class="photo-main">
-                        <div class="controls">
-                            <i class="material-icons">share</i>
-                            <i class="material-icons">favorite_border</i>
+                <a href="/sales" class="back-link">
+                    <i class="material-icons back-icon" href="/sales">arrow_back</i>
+                </a>
+                    <div class="photo-container">
+                        <div class="photo-main">
+                            <div class="controls">
+                                <i class="material-icons">share</i>
+                                <i class="material-icons">favorite_border</i>
+                            </div>
+                            <img src="{{ asset('storage/item_images/' . $item->images) }}" alt="Item Image">
+                            <!-- <img src="https://res.cloudinary.com/john-mantas/image/upload/v1537291846/codepen/delicious-apples/green-apple-with-slice.png" alt="green apple slice"> -->
                         </div>
-                        <img src="{{ asset('storage/item_images/' . $item->images) }}" alt="Item Image">
-                        <!-- <img src="https://res.cloudinary.com/john-mantas/image/upload/v1537291846/codepen/delicious-apples/green-apple-with-slice.png" alt="green apple slice"> -->
+                        <div class="photo-album">
+                            <ul>
+                                <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302064/codepen/delicious-apples/green-apple2.png" alt="green apple"></li>
+                                <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537303532/codepen/delicious-apples/half-apple.png" alt="half apple"></li>
+                                <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537303160/codepen/delicious-apples/green-apple-flipped.png" alt="green apple"></li>
+                                <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537303708/codepen/delicious-apples/apple-top.png" alt="apple top"></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="photo-album">
-                        <ul>
-                            <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302064/codepen/delicious-apples/green-apple2.png" alt="green apple"></li>
-                            <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537303532/codepen/delicious-apples/half-apple.png" alt="half apple"></li>
-                            <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537303160/codepen/delicious-apples/green-apple-flipped.png" alt="green apple"></li>
-                            <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537303708/codepen/delicious-apples/apple-top.png" alt="apple top"></li>
-                        </ul>
-                    </div>
-                </div>
             </div>
 
             
