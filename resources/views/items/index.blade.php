@@ -4,12 +4,64 @@ $role = Auth::user()-> role ?? null
 
 <x-app-layout>
     <script>
+        async function fetchItemData(itemID) {
+            try {
+                const response = await axios.get(`http://localhost:8000/api/get-items/${itemID}`); // Adjust the URL according to your backend API
+                return response.data; // Assuming your API returns JSON data
+            } catch (error) {
+                console.error("Error fetching item data:", error);
+                return {}; // Return an empty object if there's an error
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById("openModal").addEventListener("click", function() {
-                document.getElementById("myModal").classList.remove("hidden");
+            const openModalButtons = document.querySelectorAll("#openModal, #openModalEdit");
+
+            const modal = document.getElementById("myModal");
+            const modalTitle = document.getElementById("modalTitle");
+            const form = modal.querySelector("form");
+            const actionButton = form.querySelector("button[type='submit']");
+
+            openModalButtons.forEach(button => {
+                button.addEventListener("click", async function () {
+                    const itemID = this.getAttribute("data-item-id");
+
+                    if (itemID) {
+                        // Editing mode - populate form with existing item data
+                        const itemData = await fetchItemData(itemID); // Implement this function
+
+                        modalTitle.textContent = "Edit Item"; // Change modal title
+                        actionButton.textContent = "Update"; // Change button text
+
+                        // Populate form fields
+                        document.querySelector("input[name='name']").value = itemData.name;
+                        document.querySelector("input[name='type_id']").value = itemData.type_id;
+                        document.querySelector("input[name='price']").value = itemData.price;
+                        
+                        // Update image preview
+                        const imagePreview = document.getElementById("imagePreview");
+                        imagePreview.src = "{{ asset('storage/item_images/') }}" + "/" + itemData.images;
+                    } else {
+                        // Adding mode - clear form fields 
+                        modalTitle.textContent = "Add Item"; // Change modal title
+                        actionButton.textContent = "Add"; // Change button text
+
+                        // Adding mode - clear form fields 
+                        document.querySelector("input[name='name']").value = "";
+                        document.querySelector("input[name='type_id']").value = "";
+                        document.querySelector("input[name='price']").value = "";
+                        
+                        // Clear image preview
+                        const imagePreview = document.getElementById("imagePreview");
+                        imagePreview.src = "";
+                    }
+
+                    modal.classList.remove("hidden");
+                });
             });
-            document.getElementById("closeModal").addEventListener("click", function() {
-                document.getElementById("myModal").classList.add("hidden");
+
+            document.getElementById("closeModal").addEventListener("click", function () {
+                modal.classList.add("hidden");
             });
         });
     </script>
@@ -21,7 +73,7 @@ $role = Auth::user()-> role ?? null
         <div class="modal-container bg-white w-96 mx-auto rounded shadow-lg z-50 overflow-y-auto">
 
             <div class="modal-header py-4 px-6 border-b">
-                <h2 class="font-semibold text-xl">Add Item</h2>
+                <h2 class="font-semibold text-xl" id="modalTitle">Add Item</h2>
             </div>
 
             <div class="modal-body py-4 px-6">
@@ -38,7 +90,7 @@ $role = Auth::user()-> role ?? null
 
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">Item</label>
-                        <input type="text" name="item" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <input type="text" name="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                     </div>
 
                     <div class="mb-4">
@@ -48,7 +100,8 @@ $role = Auth::user()-> role ?? null
 
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">Image</label>
-                        <input type="file" name="images" class="mt-1 block w-full">
+                        <img id="imagePreview" alt="Current Item Image" class="mt-2" style="max-width: 250px; max-height: 200px; border:2px solid black; border-radius: 4px;">
+                        <input type="file" name="images" class="mt-4 block w-full">                            
                     </div>
 
                     <div class="mb-4">
@@ -134,12 +187,15 @@ $role = Auth::user()-> role ?? null
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     <div class="flex items-center">
-                                        <a href="detail" class="flex items-center mr-3" title="Add to Cart">
+                                        <a href="{{ route('item.detail', ['id' => $item->id]) }}" class="flex items-center mr-3" title="Add to Cart">
                                             <i class="fas fa-shopping-cart"></i>
                                         </a>
-                                        <a href="users/profile/edit/" class="flex items-center" title="Edit">
+                                        <a href="#" class="flex items-center" title="Edit" data-item-id="{{ $item->id }}" id="openModalEdit">
                                             <i class="fas fa-edit mr-2"></i>
                                         </a>
+                                        <!-- <a href="/sales/edit/{{ $item->id }}" class="flex items-center" title="Edit" id="openModal">
+                                            <i class="fas fa-edit mr-2"></i>
+                                        </a> -->
                                         <a href="users/profile/delete/" class="flex items-center" title="Delete" onclick="return confirm('Confirm to delete data?')">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
