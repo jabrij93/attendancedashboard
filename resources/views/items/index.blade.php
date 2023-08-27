@@ -37,7 +37,6 @@ $role = Auth::user()-> role ?? null
 
                         modalTitle.textContent = "Edit Item"; // Change modal title
                         actionButton.textContent = "Update"; // Change button text
-                        actionButton.setAttribute("data-item-id", itemData.id); // Set the data-item-id attribute
 
                         let typeDropdown = document.querySelector("select[name='type_id']");
 
