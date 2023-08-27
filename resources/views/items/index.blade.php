@@ -20,18 +20,23 @@ $role = Auth::user()-> role ?? null
             const modal = document.getElementById("myModal");
             const modalTitle = document.getElementById("modalTitle");
             const form = modal.querySelector("form");
+            const formAction = form.getAttribute('action');
             const actionButton = form.querySelector("button[type='submit']");
 
             openModalButtons.forEach(button => {
                 button.addEventListener("click", async function () {
                     const itemID = this.getAttribute("data-item-id");
+                    const methodInput = document.getElementById("formMethod");
 
                     if (itemID) {
                         // Editing mode - populate form with existing item data
                         const itemData = await fetchItemData(itemID); // Implement this function
+                        form.setAttribute('action', '/sales/' + itemData.id);
+                        methodInput.value = "PUT";
 
                         modalTitle.textContent = "Edit Item"; // Change modal title
                         actionButton.textContent = "Update"; // Change button text
+                        actionButton.setAttribute("data-item-id", itemData.id); // Set the data-item-id attribute
 
                         // Populate form fields
                         document.querySelector("input[name='name']").value = itemData.name;
@@ -42,6 +47,8 @@ $role = Auth::user()-> role ?? null
                         const imagePreview = document.getElementById("imagePreview");
                         imagePreview.src = "{{ asset('storage/item_images/') }}" + "/" + itemData.images;
                     } else {
+                        form.setAttribute('action', "/sales");
+                        methodInput.value = "POST";
                         // Adding mode - clear form fields 
                         modalTitle.textContent = "Add Item"; // Change modal title
                         actionButton.textContent = "Add"; // Change button text
@@ -77,8 +84,10 @@ $role = Auth::user()-> role ?? null
             </div>
 
             <div class="modal-body py-4 px-6">
-                <form method="POST" action="/sales" enctype="multipart/form-data">
+                <form method="POST" action="" enctype="multipart/form-data">
                     @csrf
+                    
+                    <input type="hidden" name="_method" id="formMethod" value="POST">
 
                     <div class="mb-4">
                         <input type="hidden" name="user_id" value=" {{ Auth::user()->id }}">

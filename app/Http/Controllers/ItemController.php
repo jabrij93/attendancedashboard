@@ -41,7 +41,7 @@ class ItemController extends Controller
         $productId = $alphaPart . $numericPart;
 
         $data = new Item;
-        $data->name = $request->item;
+        $data->name = $request->name;
         $data->type_id = $request->type_id;
         $data->user_id = $request->user_id;
         $data->images = $images;
@@ -51,6 +51,41 @@ class ItemController extends Controller
 
         return redirect()->route('item.index')->with('success', 'Item has been created successfully.');
     }
+
+
+    
+    public function edit($id)
+    {
+        $item = Item::findOrFail($id);
+        return view('items.edit', compact('item'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $item = Item::findOrFail($id);
+
+        $images = $item->images; // Initialize with the existing image
+
+        if ($request->hasFile('images')) {
+            $file = $request->file('images');
+            $name = date('YmdHis') . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/item_images', $name);
+            $images = $name;
+        }
+
+        $item->name = $request->input('name');
+        $item->type_id = $request->input('type_id');
+        $item->price = $request->input('price');
+        $item->user_id = $request->input('user_id');
+        $item->product_id = $request->input('product_id');
+        $item->images = $images;
+        // Update other fields as needed...
+
+        $item->save();
+
+        return redirect()->route('item.index')->with('success', 'Item has been updated successfully.');
+    }
+
 
     public function detail($id) 
     {
