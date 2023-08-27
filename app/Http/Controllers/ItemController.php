@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Cart;
+use App\Models\ItemType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,8 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::get();
-        return view('items.index', compact('items'));
+        $types = ItemType::all();
+        return view('items.index', compact('items', 'types'));
     }
 
     public function create()

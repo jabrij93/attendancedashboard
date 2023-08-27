@@ -4,6 +4,7 @@ $role = Auth::user()-> role ?? null
 
 <x-app-layout>
     <script>
+        // Retrieve existing item information to be used in update/edit form
         async function fetchItemData(itemID) {
             try {
                 const response = await axios.get(`http://localhost:8000/api/get-items/${itemID}`); // Adjust the URL according to your backend API
@@ -14,13 +15,13 @@ $role = Auth::user()-> role ?? null
             }
         }
 
+        // Logic for Add Item and Update Item Button
         document.addEventListener("DOMContentLoaded", function () {
             const openModalButtons = document.querySelectorAll("#openModal, #openModalEdit");
 
             const modal = document.getElementById("myModal");
             const modalTitle = document.getElementById("modalTitle");
             const form = modal.querySelector("form");
-            const formAction = form.getAttribute('action');
             const actionButton = form.querySelector("button[type='submit']");
 
             openModalButtons.forEach(button => {
@@ -38,9 +39,12 @@ $role = Auth::user()-> role ?? null
                         actionButton.textContent = "Update"; // Change button text
                         actionButton.setAttribute("data-item-id", itemData.id); // Set the data-item-id attribute
 
+                        let typeDropdown = document.querySelector("select[name='type_id']");
+
                         // Populate form fields
                         document.querySelector("input[name='name']").value = itemData.name;
-                        document.querySelector("input[name='type_id']").value = itemData.type_id;
+                        typeDropdown.value = itemData.type_id; // Assuming type_id is returned by your API
+
                         document.querySelector("input[name='price']").value = itemData.price;
                         document.getElementById("productIDInput").value = itemData.product_id;
                         
@@ -56,7 +60,16 @@ $role = Auth::user()-> role ?? null
 
                         // Adding mode - clear form fields 
                         document.querySelector("input[name='name']").value = "";
-                        document.querySelector("input[name='type_id']").value = "";
+
+                        // Previous to store 'type_id'  
+                        // document.querySelector("input[name='type_id']").value = "";
+
+                        // Set type_id dropdown to its default (first) value
+                        let typeDropdown = document.querySelector("select[name='type_id']");
+                        if(typeDropdown.options.length > 0) {
+                            typeDropdown.selectedIndex = 0;
+                        }
+
                         document.querySelector("input[name='price']").value = "";
                         
                         // Clear image preview
@@ -103,7 +116,11 @@ $role = Auth::user()-> role ?? null
 
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">Type</label>
-                        <input type="text" name="type_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <select name="type_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            @foreach($types as $type)
+                                <option value="{{ $type->id }}">{{ $type->types }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="mb-4">
