@@ -38,14 +38,17 @@ $role = Auth::user()-> role ?? null
                         modalTitle.textContent = "Edit Item"; // Change modal title
                         actionButton.textContent = "Update"; // Change button text
 
+                        // Select form fields
                         let typeDropdown = document.querySelector("select[name='type_id']");
+                        let name = document.querySelector("input[name='name']");
+                        let price = document.querySelector("input[name='price']");
+                        let productId = document.getElementById("productIDInput");
 
                         // Populate form fields
-                        document.querySelector("input[name='name']").value = itemData.name;
+                        name.value = itemData.name;
                         typeDropdown.value = itemData.type_id; // Assuming type_id is returned by your API
-
-                        document.querySelector("input[name='price']").value = itemData.price;
-                        document.getElementById("productIDInput").value = itemData.product_id;
+                        price.value = itemData.price;
+                        productId.value = itemData.product_id;
                         
                         // Update image preview
                         const imagePreview = document.getElementById("imagePreview");
