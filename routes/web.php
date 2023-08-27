@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +35,12 @@ Route::get('history', [UserController::class, 'history']);
 Route::get('/cart', [ItemController::class, 'myCart'])->name('item.mycart');
 Route::post('/add_to_cart', [ItemController::class, 'addToCart']);
 Route::get('/sales', [ItemController::class, 'index'])->name('item.index');
+Route::get('/sales/edit/{id}', [ItemController::class, 'edit'])->name('item.edit');
+Route::put('/sales/{id}', [ItemController::class, 'update'])->name('item.update');
+
+// Route::get('/items/{id}/edit', [ItemController::class, 'edit'])->name('items.edit');
+// Route::put('/items/{id}', [ItemController::class, 'update'])->name('items.update');
+
 Route::get('/detail/item/{id}', [ItemController::class, 'detail'])->name('item.detail');
 Route::post('/sales', [ItemController::class, 'store']);
 
