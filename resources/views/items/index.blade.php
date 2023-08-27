@@ -42,6 +42,7 @@ $role = Auth::user()-> role ?? null
                         document.querySelector("input[name='name']").value = itemData.name;
                         document.querySelector("input[name='type_id']").value = itemData.type_id;
                         document.querySelector("input[name='price']").value = itemData.price;
+                        document.getElementById("productIDInput").value = itemData.product_id;
                         
                         // Update image preview
                         const imagePreview = document.getElementById("imagePreview");
@@ -93,9 +94,7 @@ $role = Auth::user()-> role ?? null
                         <input type="hidden" name="user_id" value=" {{ Auth::user()->id }}">
                     </div>
 
-                    <div class="mb-4">
-                        <input type="hidden" name="product_id" value=" {{ Auth::user()->id }}">
-                    </div>
+                    <input type="hidden" name="product_id" id="productIDInput">
 
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">Item</label>
