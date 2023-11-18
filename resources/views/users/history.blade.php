@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-setting2 heading="Staff Attendance History">
+    <x-setting2 heading="Purchase History">
         <div class="flex flex-col mt-6">
             <table class="min-w-0 mx-4 mb-14 divide-y divide-gray-200 overflow-x-auto">
                 <thead class="bg-gray-50">
@@ -8,22 +8,13 @@
                             No.
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Staff ID
+                            Order ID
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Date Clock-in
+                            Date
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Time Clock-in
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Location Clock-in
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Time Clock-out
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Location Clock-out
+                            Action
                         </th>
                     </tr>
                 </thead>

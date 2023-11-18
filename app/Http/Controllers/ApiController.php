@@ -11,7 +11,7 @@ class ApiController extends Controller
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     /**
-     * @var int
+     * @var int 
      */
     protected $statusCode = 200;
 
