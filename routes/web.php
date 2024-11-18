@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ItemController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +32,19 @@ Route::get('users/profile/delete/{id}', [UserController::class, 'destroy'])->nam
 Route::post('users/profile/edit/{id}', [UserController::class, 'update']);
 Route::get('history', [UserController::class, 'history']);
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::get('/cart', [ItemController::class, 'myCart'])->name('item.mycart');
+Route::post('/add_to_cart', [ItemController::class, 'addToCart']);
+Route::get('/sales', [ItemController::class, 'index'])->name('item.index');
+Route::get('/sales/edit/{id}', [ItemController::class, 'edit'])->name('item.edit');
+Route::put('/sales/{id}', [ItemController::class, 'update'])->name('item.update');
 
+// Route::get('/items/{id}/edit', [ItemController::class, 'edit'])->name('items.edit');
+// Route::put('/items/{id}', [ItemController::class, 'update'])->name('items.update');
+
+Route::get('/detail/item/{id}', [ItemController::class, 'detail'])->name('item.detail');
+Route::post('/sales', [ItemController::class, 'store']);
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Route for the getting the data feed
     Route::get('/json-data-feed', [DataFeedController::class, 'getDataFeed'])->name('json_data_feed');
 

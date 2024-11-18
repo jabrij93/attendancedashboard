@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('departments', function (Blueprint $table) {
+        Schema::create('item_types', function (Blueprint $table) {
             $table->id();
-            $table->string('department')->unique();
-            $table->string('slug')->nullable();
+            $table->string('types');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('departments');
+        Schema::dropIfExists('item_types');
     }
 };
